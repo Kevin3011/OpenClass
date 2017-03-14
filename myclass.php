@@ -2,6 +2,7 @@
 <?php 
 $current="myclass";
 $page_title="My Class";
+
 ?>
 <html>
   <?php include('extends/header.php');?>
