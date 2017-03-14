@@ -53,22 +53,23 @@ ON Customers.CustomerID=Orders.CustomerID
     }
 
 
-
-
-
-//================================================================================
-    function addClass($name, $description, $category, $type){
+    function addClass($name, $description, $category, $type, $username){
         try{
-            $stmt = $this->db->prepare("INSERT INTO user (kode_user,role,email,password,nama_user,telepon,foto) VALUES (:kode_user,:role,:email,:password,:nama_user,:telepon,:foto)");
+            $query = "INSERT INTO class 
+                        (class_no,name,description,type,status,creator_user_id) 
+                    VALUES 
+                        (:class_no, :name, :description, :type, :status, (SELECT MAX(id) FROM user WHERE user = :username) )";
+            
+            $stmt = $this->db->prepare($query);
             $stmt->execute(
-                ['kode_user' => $kode_user,
-				'role' => $role,
-				'email' => $email,
-				'password' => $password,
-				'nama_user' => $nama_dosen,
-				'telepon' => $telepon,
-				'foto' => $foto]
+                ['class_no' => $this->getDTM(),
+				'name' => $name,
+				'description' => $description,
+				'type' => $type,
+				'status' => 1,
+				'username' => $username]
                 );
+                
         }catch(PDOException $e){
             echo $e->getMessage();
         }
@@ -76,6 +77,16 @@ ON Customers.CustomerID=Orders.CustomerID
 
 
 
+//=====================================================================4
+function getDTM(){
+    date_default_timezone_set('Asia/Bangkok');
+    $t = microtime(true);
+    $micro = sprintf("%06d",($t - floor($t)) * 1000000);
+    $d = new DateTime( date('y-m-d H:i:s.'.$micro, $t) );
+    //Y year, m month, d day, H hour, i minutes
+    return $d->format("ymdHisu");
+}
+//================================================================================
 
 
 

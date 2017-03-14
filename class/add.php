@@ -2,9 +2,7 @@
 <?php 
 $current="index";
 $page_title="Create Class";
-if(isset($_GET['n'])){
-  $name = $_GET['n'];
-}
+
 
 ?>
 <html>
@@ -31,14 +29,14 @@ if(isset($_GET['n'])){
               Create a New Class
             </div>
             <div class="card-body">
-              <form class="form form-horizontal">
+              <form class="form form-horizontal" action="../api/addClassAPI.php" method="post">
                 <div class="section">
                   <div class="section-title">Information</div>
                   <div class="section-body">
                     <div class="form-group">
                       <label class="col-md-3 control-label">Class Name</label>
                       <div class="col-md-9">
-                        <input type="text" class="form-control" placeholder="">
+                        <input type="text" class="form-control" placeholder="" name="name">
                       </div>
                     </div>
                     <div class="form-group">
@@ -47,7 +45,7 @@ if(isset($_GET['n'])){
                         <p class="control-label-help">( short detail of class , 150 max words )</p>
                       </div>
                       <div class="col-md-9">
-                        <textarea class="form-control"></textarea>
+                        <textarea class="form-control" name="description"></textarea>
                       </div>
                     </div>
 
@@ -55,7 +53,7 @@ if(isset($_GET['n'])){
                       <label class="col-md-3 control-label">Category</label>
                       <div class="col-md-4">
                         <div class="input-group">
-                          <select class="select2">
+                          <select class="select2" name="category">
                             <option value="1">Computer Science</option>
                             <option value="2">Information System</option>
                             <option value="3">Visual Communication Design</option>
@@ -69,13 +67,13 @@ if(isset($_GET['n'])){
                       <label class="col-md-3 control-label">Type</label>
                       <div class="col-md-9">
                         <div class="radio radio-inline">
-                            <input type="radio" name="radio4" id="radio10" value="option10">
+                            <input type="radio" name="type" id="radio10" value="1">
                             <label for="radio10">
                               Private
                             </label>
                         </div>
                         <div class="radio radio-inline">
-                            <input type="radio" name="radio4" id="radio11" value="option11" checked>
+                            <input type="radio" name="type" id="radio11" value="0" checked>
                             <label for="radio11">
                               Public
                             </label>
