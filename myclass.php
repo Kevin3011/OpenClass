@@ -2,6 +2,8 @@
 <?php 
 $current="myclass";
 $page_title="My Class";
+aaa
+
 
 ?>
 <html>
