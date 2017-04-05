@@ -31,7 +31,7 @@
               </a>
               <div class="dropdown-menu">
                 <div class="profile-info">
-                  <h4 class="username">Kevin Adhitama</h4>
+                  <h4 class="username"><?php echo $_SESSION['name'];?></h4>
                 </div>
                 <ul class="action">
                   <li>
@@ -51,7 +51,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="http://localhost/openclass/users/logout">
                       Logout
                     </a>
                   </li>

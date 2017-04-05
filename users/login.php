@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Flat Admin V.3 - Free flat-design bootstrap administrator templates</title>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?php 
+    $isLogin = true;
+    include('../extends/header.php');
 
-  <link rel="stylesheet" type="text/css" href="../assets/css/vendor.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/flat-admin.css">
 
-  <!-- Theme -->
-  <link rel="stylesheet" type="text/css" href="../assets/css/theme/blue-sky.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/theme/blue.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/theme/red.css">
-  <link rel="stylesheet" type="text/css" href="../assets/css/theme/yellow.css">
+    session_start();
+    if(isset($_SESSION['id_user'])){
+        header('Location: http://localhost/openclass/');
+    }
+    session_abort();
 
-</head>
+  ?>
 <body>
   <div class="app app-default">
 
@@ -36,18 +33,18 @@
       <div class="app-block">
       <div class="app-form">
         <div class="form-header">
-          <div class="app-brand"><span class="highlight">Simplio</span> Admin</div>
+          <div class="app-brand"><span class="highlight">Open</span> Class</div>
         </div>
-        <form action="/" method="POST">
+        <form action="../api/loginAPI.php" method="POST">
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">
                 <i class="fa fa-user" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+              <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" name="username">
             </div>
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon2">
                 <i class="fa fa-key" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Password" aria-describedby="basic-addon2">
+              <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2" name="password">
             </div>
             <div class="text-center">
                 <input type="submit" class="btn btn-success btn-submit" value="Login">
@@ -60,8 +57,7 @@
         <div class="form-footer">
           <button type="button" class="btn btn-default btn-sm btn-social __facebook">
             <div class="info">
-              <i class="icon fa fa-facebook-official" aria-hidden="true"></i>
-              <span class="title">Login with Facebook</span>
+             <span class="title">Register</span>
             </div>
           </button>
         </div>
@@ -74,9 +70,6 @@
 </div>
 
   </div>
-  
-  <script type="text/javascript" src="../assets/js/vendor.js"></script>
-  <script type="text/javascript" src="../assets/js/app.js"></script>
 
 </body>
 </html>

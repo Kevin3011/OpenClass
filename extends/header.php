@@ -1,3 +1,13 @@
+<?php
+    if(!isset($isLogin)){
+      session_start();
+      if(!isset($_SESSION['id_user'])){
+          header("Location: http://localhost/openclass/users/login");
+      }
+      session_abort();
+    }
+?>
+
 
 <head>
   <title>OpenClass Projects</title>

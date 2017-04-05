@@ -4,8 +4,8 @@ $current="index";
 $page_title="Home";
 
 
-
-include_once('api/models.php');
+include_once('model/autoloader.php');
+    
 ?>
 
 
@@ -34,10 +34,10 @@ include_once('api/models.php');
                   <div class="search-result">
                     <ul class="result">
                       <?php
-                          $model = new DBHelper();
-                          $data = $model->getClassList();
+                          $data = Model\classModel::getClassList();
                           //start for each
-                          foreach ($data as $val) {
+                          if(!empty($data)){
+                              foreach ($data as $val) {
                       ?>
                           <li>
                             <div class="img">
@@ -51,13 +51,16 @@ include_once('api/models.php');
                               <?php }?>
                               
                               
-                              <div class="title"><a href='class/classdetail?n=<?php echo $val['class_no']; ?>'><span class="highlight"><?php echo $val['classname']; ?></span></a></div>
+                              <div class="title"><a href='class/classdetail?n=<?php echo $val['class_code']; ?>'><span class="highlight"><?php echo $val['classname']; ?></span></a></div>
                               <div class="description">Created by <?php echo $val['name']; ?></div>                          
                             </div>
                           </li>
                       <?php 
-                          }
+                            }
                           //end of foreach
+                          }else{
+                            echo "no data found!";
+                          }
                       ?>
                     </ul>
                     <div class="footer">
