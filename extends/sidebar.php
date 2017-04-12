@@ -23,6 +23,14 @@
               <div class="title">My Class</div>
             </a>
           </li>
+          <li <?php if($current == "myclass") echo "class='active'"; ?>>
+            <a href="http://localhost/openclass/myclass">
+              <div class="icon">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </div>
+              <div class="title">Message</div>
+            </a>
+          </li>
           
         </ul>
       </div>

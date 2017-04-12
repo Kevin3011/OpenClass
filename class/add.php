@@ -4,6 +4,8 @@ $current="index";
 $page_title="Create Class";
 
 
+include_once('../model/autoloader.php');
+    
 ?>
 <html>
   <?php include('../extends/header.php');?>
@@ -54,10 +56,15 @@ $page_title="Create Class";
                       <div class="col-md-4">
                         <div class="input-group">
                           <select class="select2" name="category">
-                            <option value="1">Computer Science</option>
-                            <option value="2">Information System</option>
-                            <option value="3">Visual Communication Design</option>
-                            <option value="4">Industrial</option>
+                            <?php 
+                                $data = Model\classModel::getClassCategory(null);
+                                //start for each
+                                if(!empty($data)){
+                                    foreach ($data as $val) {
+                                      echo "<option value='" . $val['category_code'] . "'>" . $val['name'] . "</option>";
+                                    }
+                                }
+                            ?>
                           </select>
                         </div>
                       </div>
