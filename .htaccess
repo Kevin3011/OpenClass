@@ -1,4 +1,30 @@
-RewriteEngine on
+RewriteEngine on 
+RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^(.*)$ $1.php
+
+RewriteRule ^assets/ assets/ [R,L]
+RewriteRule ^action/login+$ openclass/action/loginAction.php [L]
+RewriteRule ^action/class/add+$ openclass/action/addClassAction.php [L]
+RewriteRule ^action/discussion/([0-9]+)/add+$ openclass/action/addDiscussionAction.php?ClassCode=$1 [L]
+RewriteRule ^class/([0-9]+)/join+$ openclass/action/joinClassAction.php?route=Class&ClassCode=$1 [L]
+RewriteRule ^class/([0-9]+)/discussion/(.+)/reply+$ openclass/action/replyDiscussionAction.php?ClassCode=$1&discussion_no=$2 [L]
+RewriteRule ^class/([0-9]+)/document/(.+)+$ openclass/action/getDocumentAction.php?ClassCode=$1&docno=$2 [L]
+    
+RewriteRule ^testupload openclass/testupload.html [L]
+RewriteRule ^upload openclass/upload.php [L]
+RewriteRule ^images/+$ images/ [L]
+RewriteRule ^images/cprofile/+$ images/cprofile/ [L]
+RewriteRule ^gag/images/cprofile/(.+)+$ images/cprofile/$1 [L]
+
+RewriteRule ^login+$ openclass/login.php [L]
+RewriteRule ^logout+$ openclass/logout.php [L]
+RewriteRule ^home+$ openclass/index.php?route=Home [L]
+RewriteRule ^home/([A-Z]+)+$ openclass/index.php?route=Home&c=$1 [L]
+RewriteRule ^class/add+$ openclass/index.php?route=Add+Class [L]
+RewriteRule ^class/([0-9]+)+$ openclass/index.php?route=Class&ClassCode=$1 [L]
+RewriteRule ^class/([0-9]+)/([a-z]+)+$ openclass/index.php?route=Class&ClassCode=$1&p=$2 [L]
+
+RewriteRule ^class/([0-9]+)/([a-z]+)/(.+)+$ openclass/index.php?route=Class&ClassCode=$1&p=$2&d=$3 [L]
+RewriteRule ^myclass+$ openclass/index.php?route=MyClass [L]
+
+RewriteRule ^applications/sample(/[a-z]+)+$ openclass/index.php?route=$0 [L]
